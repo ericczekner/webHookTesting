@@ -1,0 +1,287 @@
+%%[
+    /* brand email / content area to be either 'DEV' or 'ACTIVE' - NO OTHER VALUE IS ACCEPTED */
+    set @type = 'ACTIVE'
+    set @country = 'us'
+    set @language = 'en'
+    set @testmode = 'false'
+    set @variant = 'null'
+    set @date = format(now(), 'yyyy/MM/dd')
+
+    /* 'XXX' to be replaced with Claravine campaign ID */
+    set @claravine = 'dss-Disneyplus-email-XXX'
+
+    contentblockbykey(concat('ClaravineQSP', @type))
+
+    /* dynamically look up footer block names from bu defaults */
+    set @mid = memberid
+    set @buDefaultContent = LookupRows(concat('ENT.BU Defaults - ', @type), 'mid', @mid)
+    set @buDefaultRow = row(@buDefaultContent, 1)
+    set @footerLegal = field(@buDefaultRow,'footerLegal')
+]%%
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <style type="text/css">
+        @font-face {
+            font-family: 'Avenir';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Avenir-Roman'), url(https://prod-static.disney-plus.net/us-east-1/prod/fonts/Avenir-Roman.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Avenir';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Avenir-Oblique'), url(https://prod-static.disney-plus.net/us-east-1/prod/fonts/Avenir-Oblique.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Avenir';
+            font-style: normal;
+            font-weight: bold;
+            src: local('Avenir-Heavy'), url(https://prod-static.disney-plus.net/us-east-1/prod/fonts/Avenir-Heavy.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Avenir';
+            font-style: italic;
+            font-weight: bold;
+            src: local('Avenir-HeavyOblique'), url(https://prod-static.disney-plus.net/us-east-1/prod/fonts/Avenir-HeavyOblique.woff) format('woff');
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        /* Forces Hotmail to display emails at full width */
+        .ExternalClass {
+            width: 100%;
+        }
+
+        /* Hotmail table centering fix */
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
+        /* Forces Hotmail to display normal line spacing */
+        .ExternalClass * {
+            line-height: 100%
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        /* Yahoo paragraph fix */
+        table td {
+            border-collapse: collapse;
+        }
+
+        /* Anti-aliasing font for Webkit-based browsers */
+        td, span, a, b, p, h1, h2, h3, h4, h5, h6 {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* This resolves the Outlook 07, 10, and Gmail td padding issue fix */
+        /* This resolves the issue when iphone puts links on dates, etc. */
+        .appleLinksWhite a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .appleLinksWhiteUL a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .appleLinksWhite2 a {
+            color: #F9F9F9 !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray a {
+            color: #1f326f;
+            text-decoration: none;
+        }
+
+        .appleLinksGray2 a {
+            color: #707070;
+            text-decoration: none;
+        }
+
+        .appleLinksGray3 a {
+            color: #95a1bc !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray4 a {
+            color: #afafaf !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray5 a {
+            color: #c0c0c0 !important;
+            text-decoration: none !important;
+        }
+
+        .appleLinksGray5UL a {
+            color: #c0c0c0 !important;
+            text-decoration: underline;
+        }
+
+        .appleLinksBlack a {
+            color: #1d1d1d;
+            text-decoration: none;
+        }
+
+        .appleLinksGreen a {
+            color: #1a3c34 !important;
+        }
+
+        a.mobileshow,
+        .mobilehide {
+            display: none;
+            color: #fff;
+            /* for Gmail */
+        }
+
+        .tonline {
+            display: block !important;
+        }
+
+        .module {
+            margin: 0 !important;
+            border: none !important;
+        }
+
+        @media only screen and (max-width: 480px) {
+            #background {
+                background-color: #ffffff !important;
+            }
+        }
+
+        @media only screen and (max-width: 580px) {
+            .module {
+                margin-bottom: -1px !important;
+                border-width: 1px !important;
+            }
+        }
+    </style>
+    <!--[if mso]>
+        <style>
+            td, a {
+                font-family: Arial, sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+    <!--[if gte mso 9]>
+        <xml>
+            <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    <![endif]-->
+    <title>Disney+ Email</title>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="width:100% !important;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;">
+    <span class="preheader" style="color:#eaeaea;display:none!important;font-size:1px;line-height:1px;max-height:0;max-width:0;mso-hide:all!important;opacity:0;overflow:hidden;visibility:hidden">&nbsp;</span>
+    <!-- Insert &zwnj;&nbsp; hack after hidden preview text -->
+    <div style="display: none; max-height: 0px; overflow: hidden;"> &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+    </div>
+    <table id="background" role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" width="100%" bgcolor="#eaeaea">
+        <tr>
+            <td>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" width="480" bgcolor="#090b13" style="width: 480px !important;">
+                    <tr>
+                        <td align="center">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <td>%%=contentblockbykey(concat("Header", @type))=%%</td>
+                                </tr>
+
+                                <!-- ====== START Body Modules ====== -->
+
+                                
+
+                                <!-- ====== END Body Modules ======== -->
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <table class="module" role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#090b13" style="margin-bottom: -1px; border-bottom: 1px solid #090b13;">
+                                <tr>
+                                    <td>
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="center">%%=contentblockbykey(concat('FooterSocial', @type))=%%</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">%%=contentblockbykey(concat('FooterHelp', @type))=%%</td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#757679" style="font-size:0;">
+                                                    <img src="https://image.mail.disneyplus.com/lib/fe4415707564067f751773/m/1/50b6aed0-e0d0-42ec-b6d9-0b67b86ca899.gif" alt="" width="1" height="1" style="display:block" border="0">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>%%=contentblockbykey(concat('FooterLogos', @type))=%%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>%%=treatascontent(contentblockbykey(@footerLegal))=%%</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 240px; padding-right: 240px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <custom name="opencounter" type="tracking" />
+    %%[ if @country == "us" then ]%%
+    <img width="1" height="1" style="display:none" src="%%=concat('https://email.unid.go.com/v2?&lineOfBusiness=disney%20plus&subBusinessUnit=disney%20plus&deployDate=', @date, '&campaignName=', emailname_, '&email=', emailaddr, '&swid=', swid)=%%" alt=""/>
+    %%[ endif ]%%
+</body>
+</html>
