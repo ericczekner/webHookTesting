@@ -1,0 +1,23 @@
+<!-- START Footer5b_A1_null_Black -->
+%%=beginImpressionRegion('Footer5b_A1_null_Black')=%%
+%%[ contentblockbykey(concat('ClaravineQSP', @type)) ]%%
+%%[
+    if empty(@memberid) then
+        set @memberid = memberid
+    endif
+    if @memberid != 100021970 then
+]%%
+<table cellspacing="0" cellpadding="0" border="0" align="center">
+    <tr>
+        <td align="center">
+            %%[ if @memberid == 100021969 or (@memberid == 100022033 and @country == 'ca') then ]%%
+                <img src="https://image.mail.disneyplus.com/lib/fe4415707564067f751773/m/3/f53e63ff-95a6-4549-8d90-67be2e421d49.png" alt="" style="display: block;" width="480" height="73" border="0">
+            %%[ else ]%%
+                <img src="https://image.mail.disneyplus.com/lib/fe4415707564067f751773/m/3/67e861db-fed4-4c62-884e-80a50b5be487.png" alt="" style="display: block;" width="480" height="73" border="0">
+            %%[ endif ]%%
+        </td>
+    </tr>
+</table>
+%%[ endif ]%%
+%%=endImpressionRegion()=%%
+<!-- END Footer5b_A1_null_Black -->
